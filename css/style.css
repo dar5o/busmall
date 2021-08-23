@@ -1,0 +1,57 @@
+img {
+  height: 25%;
+  width: 25%;
+} 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #4D4D55;
+}
+
+/* HERO IMAGE */
+.intro {
+  height: 100%;
+  width: 100%;
+  margin: auto 0;
+  background-image: url(../img/road.jpeg);
+  display: table;
+  background-size: cover;
+}
+
+.intro .inner {
+  display: table-cell;
+  padding-top: 40px;
+  width: 100%;
+  max-width: none;
+  text-align: center;
+}
+/* END HERO IMAGE */
+
+h1 {
+  font-family: 'Faster One', cursive;
+  font-size: 8.5em;
+  text-shadow: 1px 1px #8A7871;
+  text-align: center;
+}
+
+p {
+  font-family: 'Montserrat Alternates', sans-serif;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#allProducts {
+  text-align: center;
+  margin: 70px 0;
+}
+
+#allProducts img {
+  height: 20%;
+  width: 20%;
+  border: 15px solid #4D4D55;
+  border-radius: 5%;
+  margin: 5px;
+  align-content: center;
+} 
