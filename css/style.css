@@ -11,7 +11,7 @@ html, body {
 }
 
 /* HERO IMAGE */
-.intro {
+.beginning {
   height: 100%;
   width: 100%;
   margin: auto 0;
@@ -20,7 +20,7 @@ html, body {
   background-size: cover;
 }
 
-.intro .inner {
+.beginning .inner {
   display: table-cell;
   padding-top: 40px;
   width: 100%;
