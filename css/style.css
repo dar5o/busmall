@@ -55,3 +55,41 @@ p {
   margin: 5px;
   align-content: center;
 } 
+
+.btn {
+  background: #4D4D55;
+  /* opacity: 0.5; */
+  border-radius: 9px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  color: rgb(175, 206, 198);
+  font-size: 200%;
+  padding: 10px 20px;
+  border: solid #E2E6E5 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0 20px;
+}
+
+#stats {
+  margin: 60px;
+}
+li {
+  font-family: 'Montserrat Alternates', sans-serif;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.btn:hover {
+  color:#4D4D55;
+  background-color:#E2E6E5;
+  border-color:#4D4D55;
+}
+
+#chartContainer {
+  text-align: center;
+  margin: auto;
+  width: 650px;
+  height: 650px;
+  margin-bottom: 50px;
+}
