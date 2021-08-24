@@ -8,6 +8,7 @@ var buttonLinks = document.getElementById('buttonLinks');
 var stats = document.getElementById('stats');
 var chartContainer = document.getElementById('chartContainer');
 
+
 var leftImgTag = document.getElementById('left');
 var middleImgTag = document.getElementById('center');
 var rightImgTag = document.getElementById('right');
@@ -31,11 +32,14 @@ function Product(name, src) {
   Product.allProducts.push(this);
 }
 
-function instantiateProducts () {
+function instantiateProducts() {
   for(var i = 0; i < allProductNames.length; i++) {
     new Product(allProductNames[i], allProductSrc[i]);
   }
 }
+
+instantiateProducts();
+displayProducts();
 
 function randomNumber() {
   return Math.floor(Math.random() * Product.allProducts.length);
@@ -70,24 +74,6 @@ function displayProducts() {
   Product.checkDupes = Product.checkDupes.slice(3, 6);
 }
 
-function renderStats() {
-  var h1El = document.createElement('h1');
-  h1El.textContent = 'Stats';
-  stats.appendChild(h1El);
-
-  var buttonEl = document.createElement('a');
-  buttonEl.textContent = 'Stats';
-  buttonEl.setAttribute('class', 'btn');
-  buttonEl.href = '#statsContainer';
-  buttonLinks.appendChild(buttonEl);
-
-  for (var i = 0; i < Product.allProducts.length; i++) {
-    var liEl = document.createElement('li');
-    liEl.textContent = Product.allProducts[i].clicks + ' votes for ' + Product.allProducts[i].name;
-    stats.appendChild(liEl);
-  }
-}
-
 var handleClick = function(event) {
   if (event.target === productContainer) {
     return alert('click on an image, please');
@@ -108,11 +94,78 @@ var handleClick = function(event) {
   if(totalClicks === 25) {
     productContainer.removeEventListener('click', handleClick);
     renderStats();
+    renderChart();
 
   }
   displayProducts();
 };
 
-displayProducts();
+function renderStats() {
+  var h1El = document.createElement('h1');
+  h1El.textContent = 'Stats';
+  stats.appendChild(h1El);
 
+  var buttonEl = document.createElement('a');
+  buttonEl.textContent = 'Stats';
+  buttonEl.setAttribute('class', 'btn');
+  buttonEl.href = '#statsContainer';
+  buttonLinks.appendChild(buttonEl);
+
+  for (var i = 0; i < Product.allProducts.length; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = Product.allProducts[i].clicks + ' votes for ' + Product.allProducts[i].name;
+    stats.appendChild(liEl);
+  }
+}
+
+function renderChart() {
+  var canvasEl = document.createElement('canvas');
+  canvasEl.setAttribute = ('id', 'productChart');
+  chartContainer.style.width = '500px';
+  chartContainer.style.height = '500px';
+  chartContainer.appendChild(canvasEl);
+
+  var buttonEl = document.createElement('a');
+  buttonEl.textContent = 'Chart';
+  buttonEl.setAttribute('class', 'btn');
+  buttonEl.href = '#chartContainer';
+  buttonLinks.appendChild(buttonEl);
+
+  var ctx = canvasEl.getContext('2d');
+  var votes = [];
+  var names = [];
+  for(var i = 0; i < Product.allProducts.length; i++) {
+    votes[i] = Product.allProducts[i].clicks;
+    names[i] = Product.allProducts[i].name;
+  }
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        data: votes,
+        label: 'Votes',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Votes Per Product',
+        fontSize: 50
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            stepSize: 1
+          }
+        }]
+      }
+    }
+  });
+}
 productContainer.addEventListener('click', handleClick);
