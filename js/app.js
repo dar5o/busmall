@@ -103,10 +103,12 @@ function renderChart() {
 
   var ctx = canvasEl.getContext('2d');
   var votes = [];
+  var timesShown = [];
   var names = [];
   for(var i = 0; i < Product.allProducts.length; i++) {
     votes[i] = Product.allProducts[i].clicks;
     names[i] = Product.allProducts[i].name;
+    timesShown[i] = Product.allProducts[i].timesShown;
   }
 
   new Chart(ctx, {
@@ -117,7 +119,14 @@ function renderChart() {
         data: votes,
         label: 'Votes',
         borderWidth: 2
+
+      }, {
+        data: timesShown,
+        label: 'Times Shown',
+        borderWidth: 2
+        
       }]
+
     },
     options: {
       responsive: true,
