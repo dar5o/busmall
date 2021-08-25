@@ -1,7 +1,3 @@
-img {
-  height: 25%;
-  width: 25%;
-} 
 html, body {
   margin: 0;
   padding: 0;
@@ -11,7 +7,7 @@ html, body {
 }
 
 /* HERO IMAGE */
-.beginning {
+.intro {
   height: 100%;
   width: 100%;
   margin: auto 0;
@@ -20,7 +16,7 @@ html, body {
   background-size: cover;
 }
 
-.beginning .inner {
+.intro .inner {
   display: table-cell;
   padding-top: 40px;
   width: 100%;
@@ -44,21 +40,21 @@ p {
 
 #allProducts {
   text-align: center;
-  margin: 70px 0;
+  margin: 50px 0;
 }
 
 #allProducts img {
-  height: 20%;
-  width: 20%;
+  height: 18%;
+  width: 18%;
   border: 15px solid #4D4D55;
   border-radius: 5%;
   margin: 5px;
   align-content: center;
-} 
+}
 
+/* BUTTONS */
 .btn {
   background: #4D4D55;
-  /* opacity: 0.5; */
   border-radius: 9px;
   font-family: 'Montserrat Alternates', sans-serif;
   color: rgb(175, 206, 198);
@@ -70,9 +66,17 @@ p {
   margin: 0 20px;
 }
 
+.btn:hover {
+  color:#4D4D55;
+  background-color:#E2E6E5;
+  border-color:#4D4D55;
+}
+
+/* STATS */
 #stats {
   margin: 60px;
 }
+
 li {
   font-family: 'Montserrat Alternates', sans-serif;
   text-align: center;
@@ -80,16 +84,8 @@ li {
   font-size: 20px;
 }
 
-.btn:hover {
-  color:#4D4D55;
-  background-color:#E2E6E5;
-  border-color:#4D4D55;
-}
-
+/* CHART */
 #chartContainer {
   text-align: center;
   margin: auto;
-  width: 650px;
-  height: 650px;
-  margin-bottom: 50px;
 }
