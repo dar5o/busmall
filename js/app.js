@@ -88,6 +88,66 @@ function renderStats() {
   }
 }
 
+function renderChart() {
+  var canvasEl = document.createElement('canvas');
+  canvasEl.setAttribute = ('id', 'productChart');
+  chartContainer.style.width = '500px';
+  chartContainer.style.height = '500px';
+  chartContainer.appendChild(canvasEl);
+
+  var buttonEl = document.createElement('a');
+  buttonEl.textContent = 'Chart';
+  buttonEl.setAttribute('class', 'btn');
+  buttonEl.href = '#chartContainer';
+  buttonLinks.appendChild(buttonEl);
+
+  var ctx = canvasEl.getContext('2d');
+  var votes = [];
+  var names = [];
+  for(var i = 0; i < Product.allProducts.length; i++) {
+    votes[i] = Product.allProducts[i].clicks;
+    names[i] = Product.allProducts[i].name;
+  }
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        data: votes,
+        label: 'Votes',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Votes Per Product',
+        fontSize: 50
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            stepSize: 1
+          }
+        }]
+      }
+    }
+  });
+}
+
+function checkStorage () {
+  if(localStorage.setProducts) {
+    var stringifyProducts = localStorage.getItem('setProducts');
+    Product.allProducts = JSON.parse(stringifyProducts);
+  } else {
+    instantiateProducts();
+  }
+}
+
 var handleClick = function(event) {
   if (event.target === productContainer) {
     return alert('click on an image, please');
@@ -108,11 +168,13 @@ var handleClick = function(event) {
   if(totalClicks === 25) {
     productContainer.removeEventListener('click', handleClick);
     renderStats();
-
+    renderChart();
+    localStorage.setItem('setProducts', JSON.stringify(Product.allProducts));
   }
   displayProducts();
 };
 
+checkStorage();
 displayProducts();
 
 productContainer.addEventListener('click', handleClick);
